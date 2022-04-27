@@ -1,7 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-#
-# Call pokemonsay with the think option.
-#
+# Call pokemonsay with the think option
 
-./pokemonsay.sh --think $@
+pokemonsay.sh --think $@

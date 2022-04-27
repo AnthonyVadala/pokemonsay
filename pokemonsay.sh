@@ -1,33 +1,33 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 usage() {
 	echo
-	echo "  Description: Pokemonsay makes a pokémon say something to you."
+	echo "  Description: pokemonsay makes a Pokémon say something to you."
 	echo
 	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-t] [-h] [MESSAGE]"
 	echo
 	echo "  Options:"
 	echo "    -p, --pokemon POKEMON_NAME"
-	echo "      Choose what pokemon will be used by its name."
+	echo "      Choose what Pokémon will be used by its name."
 	echo "    -f, --file COW_FILE"
 	echo "      Specify which .cow file should be used."
-	echo "    -w, --word-wrap COLUMN"
+	echo "    -W, --word-wrap COLUMN"
 	echo "      Specify roughly where messages should be wrapped."
 	echo "    -l, --list"
-	echo "      List all the pokémon available."
-	echo "    -n, --no-name"
-	echo "      Do not tell the pokémon name."
+	echo "      List all the Pokémon available."
+	echo "    -N, --no-name"
+	echo "      Do not tell the Pokémon name."
 	echo "    -t, --think"
-	echo "      Make the pokémon think the message, instead of saying it."
+	echo "      Make the Pokémon think the message, instead of saying it."
 	echo "    -h, --help"
 	echo "      Display this usage message."
 	echo "    MESSAGE"
-	echo "      What the pokemon will say. If you don't provide a message, a message will be read form standard input."
+	echo "      What the Pokemon will say. If you don't provide a message, a message will be read form standard input."
 	exit 0
 }
 
-# Where the pokemon are.
-pokemon_path=`pwd`/cows
+# Where the Pokémon are located
+pokemon_path="$(pwd)/cows"
 
 list_pokemon() {
 	echo "Pokémon available in '$pokemon_path/':"
@@ -36,12 +36,12 @@ list_pokemon() {
 	echo "$all_pokemon" | while read pokemon; do
 		pokemon=${pokemon##*/}
 		pokemon=${pokemon%.cow}
-		echo $pokemon
-	done
+		printf "%-8s\n" "${pokemon}"
+	done | column -x
 	exit 0
 }
 
-# While there are arguments, keep reading them.
+# While there are arguments, keep reading them
 while [ $# -gt 0 ]
 do
 key="$1"
@@ -62,18 +62,18 @@ case $key in
 		COW_FILE="${1#*=}"
 		shift
 		;;
-	-w|--word-wrap)
+	-W|--word-wrap)
 		WORD_WRAP="$2"
 		shift; shift
 		;;
-	-w=*|--word-wrap=*)
+	-W=*|--word-wrap=*)
 		WORD_WRAP="${1#*=}"
 		shift
 		;;
 	-l|--list)
 		list_pokemon
 		;;
-	-n|--no-name)
+	-N|--no-name)
 		DISPLAY_NAME="NO"
 		shift
 		;;
@@ -90,7 +90,7 @@ case $key in
 		usage
 		;;
 	*)
-		# Append this word to the message.
+		# Append this word to the message
 		if [ -n "$MESSAGE" ]; then
 			MESSAGE="$MESSAGE $1"
 		else
@@ -106,27 +106,34 @@ if [ -n "$WORD_WRAP" ]; then
 	word_wrap="-W $WORD_WRAP"
 fi
 
-# Define which pokemon should be displayed.
+# Support for macOS
+if [ "$(uname)" == 'Darwin' ]; then
+	SHUF=gshuf
+else
+	SHUF=shuf
+fi
+
+# Define which Pokémon should be displayed
 if [ -n "$POKEMON_NAME" ]; then
-	pokemon_cow=$(find $pokemon_path -name "$POKEMON_NAME.cow")
+	pokemon_cow="$(find "$pokemon_path" -iname "$POKEMON_NAME*.cow")"
 elif [ -n "$COW_FILE" ]; then
 	pokemon_cow="$COW_FILE"
 else
-	pokemon_cow=$(find $pokemon_path -name "*.cow" | shuf -n1)
+	pokemon_cow="$(find "$pokemon_path" -iname "*.cow" | $SHUF -n1)"
 fi
 
-# Get the pokemon name.
-filename=$(basename "$pokemon_cow")
+# Get the Pokémon name
+filename="$(basename "$pokemon_cow")"
 pokemon_name="${filename%.*}"
 
-# Call cowsay or cowthink.
+# Call cowsay or cowthink
 if [ -n "$THINK" ]; then
 	cowthink -f "$pokemon_cow" $word_wrap $MESSAGE
 else
 	cowsay -f "$pokemon_cow" $word_wrap $MESSAGE
 fi
 
-# Write the pokemon name, unless requested otherwise.
+# Write the pokemon name, unless requested otherwise
 if [ -z "$DISPLAY_NAME" ]; then
-	echo $pokemon_name
+	echo "$pokemon_name"
 fi
