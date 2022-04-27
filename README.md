@@ -88,4 +88,4 @@ A special thanks to [@possatti](https://github.com/possatti) for creating the or
 
 ## NOTICE
 
-I don't own Pokémon or anything related to it. Pokémon is property of [The Pokémon Company][https://www.pokemon.com/us/legal/].
+I don't own Pokémon or anything related to it. Pokémon is property of [The Pokémon Company](https://www.pokemon.com/us/legal/).
