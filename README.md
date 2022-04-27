@@ -3,7 +3,7 @@ pokemonsay
 
 ![pokemonsay example image](example.png)
 
-`pokemonsay` is [`cowsay`][cowsay] but for Pokémon! Internally, `pokemonsay` still uses `cowsay`, so you need it will need to be installed as well.
+`pokemonsay` is [`cowsay`][cowsay] but for Pokémon! Internally, `pokemonsay` still uses `cowsay`, so you will need it to be installed as well.
 
 ## Installation
 
