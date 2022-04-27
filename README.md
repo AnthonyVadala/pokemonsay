@@ -3,7 +3,7 @@ pokemonsay
 
 ![pokemonsay example image](example.png)
 
-`pokemonsay` is [`cowsay`][cowsay] but for Pokémon! Internally, `pokemonsay` still uses `cowsay`, so you will need it to be installed as well.
+`pokemonsay` is [cowsay](https://en.wikipedia.org/wiki/Cowsay) but for Pokémon! Internally, `pokemonsay` still uses `cowsay`, so you will need it to be installed as well.
 
 ## Installation
 
@@ -14,12 +14,14 @@ You can install `pokemonsay` through Homebrew.
 ```sh
 # If you do not already have Homebrew installed
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# To use gshuf
+# To use gshuf (required)
 $ brew install coreutils
-# To use random sayings
+# Install cowsay (required)
+$ brew install cowsay
+# To use random sayings (optional)
 $ brew install fortune
 # Allow homebrew to install from this repo
-$ brew tap anthonyvadala/anthonyvadala https://github.com/AnthonyVadala/pokemonsay
+$ brew tap anthonyvadala/anthonyvadala
 # Install pokemonsay
 $ brew install pokemonsay
 ```
