@@ -56,24 +56,24 @@ $ pokemonthink --pokemon Charmander "One day I will be a Charizard!"
 
 ## Options
 
-	```bash
-	-p, --pokemon POKEMON_NAME
-		Choose what Pokémon will be used by its name.
-	-f, --file COW_FILE
-		Specify which .cow file should be used.
-	-W, --word-wrap COLUMN
-		Specify roughly where messages should be wrapped.
-	 -l, --list
-		List all the Pokémon available.
-	-N, --no-name
-		Do not tell the Pokémon name.
-	-t, --think
-		Make the Pokémon think the message, instead of saying it.
-	-h, --help
-		Display this usage message.
-	MESSAGE
-		What the Pokémon will say. If you don\'t provide a message, a message will be read form standard input.
-	```
+```bash
+-p, --pokemon POKEMON_NAME
+	Choose what Pokémon will be used by its name.
+-f, --file COW_FILE
+	Specify which .cow file should be used.
+-W, --word-wrap COLUMN
+	Specify roughly where messages should be wrapped.
+ -l, --list
+	List all the Pokémon available.
+-N, --no-name
+	Do not tell the Pokémon name.
+-t, --think
+	Make the Pokémon think the message, instead of saying it.
+-h, --help
+	Display this usage message.
+MESSAGE
+	What the Pokémon will say. If you don\'t provide a message, a message will be read form standard input.
+```
 ## Known Issues
 
 - When trying to call a Pokémon that has one or more variants you must specify `[Pokémon name]_[dex number][variant letter]`, you can get a full listing of Pokémon with this information by using `pokemonsay -l`.
