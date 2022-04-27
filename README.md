@@ -84,7 +84,7 @@ $ brew uninstall pokemonsay
 
 ## Special Thanks
 
-A special thanks to @possatti for creating the original pokemonsay.
+A special thanks to [@possatti](https://github.com/possatti) for creating the original pokemonsay.
 
 ## NOTICE
 
