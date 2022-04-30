@@ -13,7 +13,7 @@ You can install `pokemonsay` through Homebrew.
 
 ```sh
 # If you do not already have Homebrew installed
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # To use gshuf (required)
 $ brew install coreutils
 # Install cowsay (required)
