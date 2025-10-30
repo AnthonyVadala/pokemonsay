@@ -51,7 +51,7 @@ fortune | pokemonsay
 There is a cowthink-like version as well:
 
 ```sh
-pokemon -t -p Charmander-Kanto One day I will be a Charizard!
+pokemonthink -p Charmander-Kanto One day I will be a Charizard!
 ```
 
 ## Options
