@@ -5,5 +5,7 @@
 build/__pycache__
 build/images/*
 build/cows/*
+build/scrapped-data/*
+build/pokemonsay-build/*
 build/img2xterm
 build/scrape.log
