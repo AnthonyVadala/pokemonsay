@@ -7,17 +7,17 @@ import requests
 from bs4 import BeautifulSoup
 import tqdm
 
-# Define the URLs and image dimensions
+# Define the URLs and image dimensions for each generation
 url_data = [
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number", "width": 52, "height": 52, "gen": 1},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Johto_Pok%C3%A9dex_number", "width": 32, "height": 32, "gen": 2},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Hoenn_Pok%C3%A9dex_number_(Generation_VI)", "width": 40, "height": 40, "gen": 3},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number", "width": 52, "height": 52, "gen": "-kanto"},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Johto_Pok%C3%A9dex_number", "width": 32, "height": 32, "gen": "-johto"},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Hoenn_Pok%C3%A9dex_number_(Generation_VI)", "width": 40, "height": 40, "gen": "-hoenn"},
     {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Sinnoh_Pok%C3%A9dex_number", "width": 48, "height": 48, "gen": 4},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Unova_Pok%C3%A9dex_number_(Black_2_and_White_2)", "width": 32, "height": 32, "gen": 5},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kalos_Pok%C3%A9dex_number", "width": 40, "height": 40, "gen": 6},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Alola_Pok%C3%A9dex_number_(Ultra_Sun_and_Ultra_Moon)", "width": 40, "height": 40, "gen": 7},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Galar_Pok%C3%A9dex_number", "width": 68, "height": 68, "gen": 8},
-    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Paldea_Pok%C3%A9dex_number", "width": 60, "height": 60, "gen": 9}
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Unova_Pok%C3%A9dex_number_(Black_2_and_White_2)", "width": 32, "height": 32, "gen": "-unova"},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kalos_Pok%C3%A9dex_number", "width": 40, "height": 40, "gen": "-kalos"},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Alola_Pok%C3%A9dex_number_(Ultra_Sun_and_Ultra_Moon)", "width": 40, "height": 40, "gen": "-alola"},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Galar_Pok%C3%A9dex_number", "width": 68, "height": 68, "gen": "-galar"},
+    {"url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Paldea_Pok%C3%A9dex_number", "width": 60, "height": 60, "gen": "-paldea"}
 ]
 
 """ # Get the names of all PNG files in the directory
@@ -47,7 +47,7 @@ for url_dict in tqdm.tqdm(url_data):
         alt = img.get('alt')
         src = img.get('src')
         if img.get('width') == str(width) and img.get('height') == str(height):
-            # Download the image and save it with the name of the original file + the generation region name
+            # Download the image and save it with the name of the original file + the generation number
             image_url = src
             response = requests.get(image_url)
             with open(f'{output_dir}/{alt}{gen}.png', 'wb') as f:
