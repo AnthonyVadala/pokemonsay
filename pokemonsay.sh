@@ -11,11 +11,11 @@ usage() {
 	echo "      Choose what Pokémon will be used by its name."
 	echo "    -f, --file COW_FILE"
 	echo "      Specify which .cow file should be used."
-	echo "    -W, --word-wrap COLUMN"
+	echo "    -w, --word-wrap COLUMN"
 	echo "      Specify roughly where messages should be wrapped."
 	echo "    -l, --list"
 	echo "      List all the Pokémon available."
-	echo "    -N, --no-name"
+	echo "    -n, --no-name"
 	echo "      Do not tell the Pokémon name."
 	echo "    -t, --think"
 	echo "      Make the Pokémon think the message, instead of saying it."
@@ -62,18 +62,18 @@ case $key in
 		COW_FILE="${1#*=}"
 		shift
 		;;
-	-W|--word-wrap)
+	-w|--word-wrap)
 		WORD_WRAP="$2"
 		shift; shift
 		;;
-	-W=*|--word-wrap=*)
+	-w=*|--word-wrap=*)
 		WORD_WRAP="${1#*=}"
 		shift
 		;;
 	-l|--list)
 		list_pokemon
 		;;
-	-N|--no-name)
+	-n|--no-name)
 		DISPLAY_NAME="NO"
 		shift
 		;;
@@ -103,7 +103,7 @@ done
 
 # Define where to wrap the message.
 if [ -n "$WORD_WRAP" ]; then
-	word_wrap="-W $WORD_WRAP"
+	word_wrap="-w $WORD_WRAP"
 fi
 
 # Support for macOS
